@@ -1,6 +1,5 @@
 <h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
-<h3>Name: </h3>
-<h3>Register Number:     </h3>
+
 <H3>Aim:</H3>
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -54,42 +53,64 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
 
-<hr>
+## PROGRAM
+```python
+from collections import defaultdict
+def dfs(graph, start, visited, path):
+    path.append(start)
+    visited[start] = True
+    for neighbour in graph[start]:
+        if not visited[neighbour]:
+            dfs(graph, neighbour, visited, path)
+    return path
+
+graph = defaultdict(list)
+n, e = map(int, input("Enter number of nodes and edges (n e): ").split())
+print("Enter edges (u v):")
+for i in range(e):
+    u, v = input().split()
+    graph[u].append(v)
+    graph[v].append(u)
+print("Graph:", dict(graph))
+start = 'A'
+visited = defaultdict(bool)
+path = []
+traversed_path = dfs(graph, start, visited, path)
+print("DFS Traversal Path:", traversed_path)
+```
+
+
+
 <h3>Sample Input</h3>
-<hr>
-8 9 <BR>
+
 A B <BR>
 A C <BR>
-B E <BR>
-C D <BR>
 B D <BR>
-C G <BR>
-D F <BR>
-G F <BR>
-F H <BR>
-<hr>
+B E <BR>
+C E <BR>
+D E <BR>
+
 <h3>Sample Output</h3>
-<hr>
-['A', 'B', 'E', 'D', 'C', 'G', 'F', 'H']
 
-<hr>
+![425817099-ec1ae02c-879c-4685-b4f5-44f51aab6596](https://github.com/user-attachments/assets/c5fe5c90-6e6a-43e7-8833-514a81d2fc45)
 
-<hr>
+
+
 <h3>Sample Input</h3>
-<hr>
+
 5 5 <BR>
 0 1 <BR>
 0 2 <BR>
 0 3 <BR>
 2 3 <BR>
 2 4 <BR>
-<hr>
-<h3>Sample Output</h3>
-<hr>
-['0', '1', '2', '3', '4']
 
-<hr>
+<h3>Sample Output</h3>
+
+![425817141-4596398e-56a0-44f5-b8e4-6304f6b35a99](https://github.com/user-attachments/assets/c75134c6-1ea0-4a19-827a-1bbfbbfea69d)
+
+
 <h3>Result:</h3>
-<hr>
+
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
 
